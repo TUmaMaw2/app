@@ -1,10 +1,11 @@
 import pymysql
+import os
 
 def get_connection():
     return pymysql.connect(
-        host="localhost",
-        user="root",
-        password="040422cYa",
-        database="mobil_rute",
-        cursorclass=pymysql.cursors.DictCursor
+        host=os.environ.get("DB_HOST"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME"),
+        port=int(os.environ.get("DB_PORT", 3306))
     )
